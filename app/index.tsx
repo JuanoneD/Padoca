@@ -24,8 +24,9 @@ export default function Login() {
     const onPress = async() => {
         var item = await AsyncStorage.getItem("users");
         var user:User[] = item==null?[]:JSON.parse(item);
-        user.map((item)=>{
+        user.map(async (item)=>{
             if(item.email == email && password == password){
+                await AsyncStorage.setItem("user",JSON.stringify(item));
                 router.push("/produtos")
             }
         })
