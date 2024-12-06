@@ -27,7 +27,7 @@ export default function Login() {
         user.map(async (item)=>{
             if(item.email == email && password == password){
                 await AsyncStorage.setItem("user",JSON.stringify(item));
-                router.push("/produtos")
+                router.push("/(tabs)")
             }
         })
         console.log(user)
