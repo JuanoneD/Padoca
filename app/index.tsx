@@ -29,6 +29,7 @@ export default function Login() {
                 router.push("/produtos")
             }
         })
+        console.log(user)
         setError(true);
     };
 

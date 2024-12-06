@@ -24,6 +24,7 @@ export default function Login() {
         var user:User[] = item==null?[]:JSON.parse(item);
         user.push({name,email,password,adress})
         await AsyncStorage.setItem("users",JSON.stringify(user));
+        router.push("/")
     };
 
     return (

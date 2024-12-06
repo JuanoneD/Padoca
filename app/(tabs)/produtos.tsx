@@ -9,15 +9,17 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
+import { Link, router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Inter_900Black } from "@expo-google-fonts/inter";
+
 
 export default function TabTwoScreen() {
   return (
     <>
       <View style={styles.tela}>
         <View style={styles.butao}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity onPress={()=>{router.back()}} style={styles.button}>
             <Text style={styles.white}>◀</Text>
           </TouchableOpacity>
         </View>
