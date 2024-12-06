@@ -41,7 +41,7 @@ export default function TabTwoScreen() {
             <View style={styles.card}>
               <Image source={pao} style={styles.imagens} />
               <View style={styles.hori}>
-                <Text>Pão Frances</Text>
+                <Text>Pão Francês</Text>
                 <Text>2,00</Text>
               </View>
               <TouchableOpacity style={styles.but}>
