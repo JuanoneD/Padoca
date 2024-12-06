@@ -3,6 +3,15 @@ import React from "react";
 import { View, Text } from "react-native"
 import { SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { FlatList } from "react-native-gesture-handler";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+interface User{
+    name:String;
+    email:String;
+    password:String;
+    adress:String
+};
+
 
 export default function Login() {
     const [email, setEmail] = React.useState('');
@@ -10,11 +19,17 @@ export default function Login() {
     const [error,setError] = React.useState(false);
 
 
-    const onPress = () => {
-        if(email==="admin@adm.adm" && password==="adm1234"){
-            // router.push("/(adm)")
-            return
-        }
+
+
+    const onPress = async() => {
+        var item = await AsyncStorage.getItem("users");
+        var user:User[] = item==null?[]:JSON.parse(item);
+        user.map((item)=>{
+            if(item.email == email && password == password){
+                router.push("/produtos")
+            }
+        })
+        setError(true);
     };
 
     return (

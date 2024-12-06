@@ -2,7 +2,6 @@ import { Link, router } from "expo-router";
 import React from "react";
 import { View, Text,BackHandler } from "react-native"
 import { SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { FlatList } from "react-native-gesture-handler";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface User{
@@ -23,7 +22,6 @@ export default function Login() {
     const onPress = async() => {
         var item = await AsyncStorage.getItem("users");
         var user:User[] = item==null?[]:JSON.parse(item);
-        console.log(user);
         user.push({name,email,password,adress})
         await AsyncStorage.setItem("users",JSON.stringify(user));
     };
@@ -32,7 +30,7 @@ export default function Login() {
         <>
             <SafeAreaView style={{display:"flex",justifyContent:"center",alignItems:"center",height:"100%"}}>
                 <View style={{display:"flex",justifyContent:"flex-start",width:"300px"}}>
-                    <TouchableOpacity onPress={()=>{router.back()}}><Text>◀️</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{router.back()}}><Text>◀</Text></TouchableOpacity>
                 </View>
                 <View style={styles.box}>
                     <Text style={{fontFamily:"Inter",fontSize:"40px"}}>Registro</Text>
