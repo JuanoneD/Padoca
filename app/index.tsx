@@ -26,7 +26,7 @@ export default function Login() {
         var user:User[] = item==null?[]:JSON.parse(item);
         user.map((item)=>{
             if(item.email == email && password == password){
-                router.push("/produtos")
+                router.push("/(tabs)")
             }
         })
         console.log(user)
