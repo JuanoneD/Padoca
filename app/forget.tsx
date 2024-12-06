@@ -22,12 +22,14 @@ export default function Login() {
 
 
     const onPress = async() => {
+        await AsyncStorage.removeItem("users")
         var item = await AsyncStorage.getItem("users");
         var user:User[] = item==null?[]:JSON.parse(item);
-        user.map(async (item)=>{
-            if(item.email === email && password === password){
-                await AsyncStorage.setItem("user",JSON.stringify(item));
-                router.push("/(tabs)")
+        user.map(async (item,index)=>{
+            if(item.email === email){
+                user[index].password = password
+                await AsyncStorage.setItem("users",JSON.stringify(user))
+                router.push("/")
             }
         })
         console.log(user)
@@ -37,34 +39,29 @@ export default function Login() {
     return (
         <>
             <SafeAreaView style={{display:"flex",justifyContent:"center",alignItems:"center",height:"100%"}}>
+                <View style={{display:"flex",justifyContent:"flex-start",width:"300px"}}>
+                    <TouchableOpacity onPress={()=>{router.back()}}><Text>◀</Text></TouchableOpacity>
+                </View>
                 <View style={styles.box}>
-                    <Text style={{fontFamily:"Inter",fontSize:"40px"}}>Login</Text>
+                    <Text style={{fontFamily:"Inter",fontSize:"25px"}}>Recuperação de Senha</Text>
                     <TextInput
                         style={styles.input}
                         onChangeText={setEmail}
                         value={email}
-                        placeholder="Email"
+                        placeholder="Email que deseja trocar a senha!"
                         keyboardType="email-address"
                     />
                     <TextInput
                         style={styles.input}
                         onChangeText={setPassword}
                         value={password}
-                        placeholder="Senha"
+                        placeholder="Nova senha"
                         secureTextEntry={true}
                     />
-                    {error&&
-                        <View>
-                            <Text style={{marginBottom:10}}>Email ou senha invalido!!</Text>
-                            <Link href={"/forget"}>Esqueci a senha</Link>
-                        </View>
-                    }
+                    {error&&<Text style={{marginBottom:10}}>Conta não encontrada!</Text>}
                     <TouchableOpacity style={styles.button} onPress={onPress}>
-                        <Text style={styles.white}>Login</Text>
+                        <Text style={styles.white}>Editar senha</Text>
                     </TouchableOpacity>
-                    <View>
-                        <Link href={"/register"}>Cadastrar Usuario</Link>
-                    </View>
                 </View>
             </SafeAreaView>
         </>
@@ -86,7 +83,6 @@ const styles = StyleSheet.create({
         width:"80%"
     },
     button: {
-
         alignItems: 'center',
         backgroundColor: 'black',
         padding: 12,
