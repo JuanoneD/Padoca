@@ -49,7 +49,28 @@ export default function TabTwoScreen() {
             <Text>endereco do usuario</Text>
           </View>
           <View style={styles.restao}>
-          <Text style={styles.titulo2}>Historico</Text>
+            <Text style={styles.titulo2}>Histórico</Text>
+
+            <View style={styles.card}>
+              <Text>Pão Francês</Text>
+              <Text>2,00</Text>
+            </View>
+
+            <View style={styles.card}>
+              <Text>Pão Francês</Text>
+              <Text>2,00</Text>
+            </View>
+
+            <View style={styles.card}>
+              <Text>Pão Francês</Text>
+              <Text>2,00</Text>
+            </View>
+
+            <View style={styles.card}>
+              <Text>Pão Francês</Text>
+              <Text>2,00</Text>
+            </View>
+
           </View>
         </View>
       </View>
