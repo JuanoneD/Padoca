@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
         width:"80%"
     },
     button: {
+
         alignItems: 'center',
         backgroundColor: 'black',
         padding: 12,

@@ -13,6 +13,11 @@ import { Link, router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Inter_900Black } from "@expo-google-fonts/inter";
 
+const logo = require("../../assets/images/beta.png")
+const pao = require("../../assets/images/pao.jpg")
+const quejo = require("../../assets/images/paoqueijo.jpg")
+const sonho = require("../../assets/images/sonho.jpg")
+const fuba = require("../../assets/images/fuba.png")
 
 export default function TabTwoScreen() {
   return (
@@ -26,6 +31,16 @@ export default function TabTwoScreen() {
         <View style={styles.resto}>
             <Text style={styles.titulo}>Panificadora Beta</Text>
             <Text style={{textAlign: "center", fontSize: 16}}>A Panificadora Beta é um estabelecimento tradicional que oferece pães fresquinhos, bolos deliciosos e uma variedade de produtos de padaria. Com atendimento acolhedor, é o lugar ideal para quem busca qualidade e sabor no seu dia a dia.</Text>
+            <Image source={logo} style={styles.image} />
+            <Text style={styles.subtitulo}>Melhores Produtos</Text>
+            <View style={styles.best}>
+              <Image source={pao} style={styles.imagens} />
+              <Image source={quejo} style={styles.imagens} />
+              <Image source={pao} style={styles.imagens} />
+              <Image source={quejo} style={styles.imagens} />
+              <Image source={pao} style={styles.imagens} />
+              <Image source={quejo} style={styles.imagens} />
+            </View>
         </View>
       </View>
     </>
@@ -41,11 +56,19 @@ const styles = StyleSheet.create({
     padding: 5,
   },    
   resto: {  
-    gap: 25,
+    gap: 15,
     padding: 13,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
+  },
+  best: {  
+    gap: 20,
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    flexWrap: "wrap",
   },
   button: {
     alignItems: "center",
@@ -63,5 +86,18 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: "center",
     fontFamily:"Inter",
-  }
+  },
+  subtitulo: {
+    fontSize: 20,
+    textAlign: "center",
+    fontFamily:"Inter",
+  },
+  image: {
+    width: 200,
+    height: 150,
+  },
+  imagens: {
+    width: 120,
+    height: 90,
+  },
 });
