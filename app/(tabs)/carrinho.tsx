@@ -44,6 +44,7 @@ export default function TabTwoScreen() {
           <View style={styles.resto}>
             <View style={styles.card}>
               <Text>Pão Francês</Text>
+              <Text>X2</Text>
               <View style={styles.hori}>
                 <Text>2,00</Text>
                 <TouchableOpacity style={styles.but}>
@@ -54,6 +55,7 @@ export default function TabTwoScreen() {
 
             <View style={styles.card}>
               <Text>Pão Francês</Text>
+              <Text>X2</Text>
               <View style={styles.hori}>
                 <Text>2,00</Text>
                 <TouchableOpacity style={styles.but}>
@@ -64,6 +66,7 @@ export default function TabTwoScreen() {
 
             <View style={styles.card}>
               <Text>Pão Francês</Text>
+              <Text>X2</Text>
               <View style={styles.hori}>
                 <Text>2,00</Text>
                 <TouchableOpacity style={styles.but}>
