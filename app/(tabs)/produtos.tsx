@@ -13,6 +13,9 @@ import { Link, router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Inter_900Black } from "@expo-google-fonts/inter";
 
+import json from "@/constants/Products.json";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const logo = require("../../assets/images/beta.png");
 const pao = require("../../assets/images/pao.jpg");
 const quejo = require("../../assets/images/paoqueijo.jpg");
@@ -21,7 +24,62 @@ const fuba = require("../../assets/images/fuba.png");
 const kit = require("../../assets/images/kitkat.jpg");
 const cafe = require("../../assets/images/cafe.jpg");
 
+interface  Products{
+  name:String,
+  price:number,
+  image:String
+}
+
+
+interface User{
+  name:String;
+  email:String;
+  password:String;
+  adress:String;
+  products:{name:String,price:number,qtd:number}[]
+};
+
+
 export default function TabTwoScreen() {
+
+  const onPress = async(name:String,price:number) => {
+    var item = await AsyncStorage.getItem("users");
+    var idOp = await AsyncStorage.getItem("userId");
+
+    if(item ==null || idOp===null){
+      router.push("/")
+      return;
+    }
+
+
+    var id = Number(idOp)
+    var user:User[] = item==null?[]:JSON.parse(item);
+    try {
+      console.log(user[id].products)
+
+      var find = false;
+
+      user[id].products.map((prod,index)=>{
+        if(prod.name===name){
+          find = true
+          user[id].products[index].qtd +=1;
+          user[id].products[index].price+=price;
+        }
+      })
+      if(!find){
+        user[id].products.push({name,price,qtd:1})
+      }
+      
+    } catch (error) {
+      console.log(error)
+      user[id].products = [{name,price,qtd:1}]
+    }finally{
+      // user[id].products = [{name,price,qtd:1}]
+      AsyncStorage.setItem("users",JSON.stringify(user))
+    }
+  }
+
+
   return (
     <>
       <View style={styles.tela}>
@@ -38,66 +96,21 @@ export default function TabTwoScreen() {
         <View style={styles.resto}>
           <Text style={styles.titulo}>Produtos</Text>
           <View style={styles.best}>
-            <View style={styles.card}>
-              <Image source={pao} style={styles.imagens} />
-              <View style={styles.hori}>
-                <Text>Pão Francês</Text>
-                <Text>2,00</Text>
-              </View>
-              <TouchableOpacity style={styles.but}>
-                <Text style={styles.white}>Adicionar</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.card}>
-              <Image source={quejo} style={styles.imagens} />
-              <View style={styles.hori}>
-                <Text>Pão de queijo</Text>
-                <Text>2,00</Text>
-              </View>
-              <TouchableOpacity style={styles.but}>
-                <Text style={styles.white}>Adicionar</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.card}>
-              <Image source={sonho} style={styles.imagens} />
-              <View style={styles.hori}>
-                <Text>Sonho</Text>
-                <Text>2,00</Text>
-              </View>
-              <TouchableOpacity style={styles.but}>
-                <Text style={styles.white}>Adicionar</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.card}>
-              <Image source={fuba} style={styles.imagens} />
-              <View style={styles.hori}>
-                <Text>Fubá</Text>
-                <Text>2,00</Text>
-              </View>
-              <TouchableOpacity style={styles.but}>
-                <Text style={styles.white}>Adicionar</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.card}>
-              <Image source={kit} style={styles.imagens} />
-              <View style={styles.hori}>
-                <Text>Bolo kitkat</Text>
-                <Text>2,00</Text>
-              </View>
-              <TouchableOpacity style={styles.but}>
-                <Text style={styles.white}>Adicionar</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.card}>
-              <Image source={cafe} style={styles.imagens} />
-              <View style={styles.hori}>
-                <Text>Café</Text>
-                <Text>2,00</Text>
-              </View>
-              <TouchableOpacity style={styles.but}>
-                <Text style={styles.white}>Adicionar</Text>
-              </TouchableOpacity>
-            </View>
+            {json.map((product:Products)=>{
+                return(
+                  <View style={styles.card}>
+                    <Image source={{uri:product.image}} style={styles.imagens} />
+                    <View style={styles.hori}>
+                      <Text>{product.name}</Text>
+                      <Text>{product.price}</Text>
+                    </View>
+                    <TouchableOpacity style={styles.but} onPress={()=>{onPress(product.name,product.price)}}>
+                      <Text style={styles.white}>Adicionar</Text>
+                    </TouchableOpacity>
+                  </View>
+                )
+              })
+            }
           </View>
         </View>
       </View>

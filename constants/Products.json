@@ -1,0 +1,37 @@
+[
+    {
+        "name":"Pao frances",
+        "price":2.59,
+        "image": "https://conteudo.imguol.com.br/c/entretenimento/45/2020/10/19/pao-frances---dona-deola-1603113166267_v2_1920x1920.jpg"
+    },
+    {
+        "name":"Macarrao",
+        "price":10.99,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYEBrLXx9KeHkySitIsLu5gIwXSBRcyMzpNQ&s"
+    },
+    {
+        "name":"Corote",
+        "price":5.59,
+        "image": "https://cdn.formulaexpress.com.br/img/p/1/2/6/2/1262-thickbox_default.jpg"
+    },
+    {
+        "name":"Sonho",
+        "price": 6.66,
+        "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRqne2jdhizFrmzeHHtkflFBh5p3truMCRyZQ3KPOljc2AzbnW2xrW0sdW7bCRF5l3wRTER197veHylKLkjedrLShIcuwCMWLmntyOgTXIPQWMqmHG69Xso57KltqyUJ4xXZkGQ5NbLyfUtuFILgxYfX-ytzuvRXgGYj-idpoLtctM4a0QqbWpU4LX/s2000/receita-de-sonho-de-padaria.jpg"
+    },
+    {
+        "name":"Bolo",
+        "price": 70.66,
+        "image": "https://img.elo7.com.br/product/zoom/1B70775/bolo-ben-10-aluguel-aluguel-de-bolo.jpg"
+    },
+    {
+        "name":"Moletom",
+        "price": 4.99,
+        "image": "https://images-americanas.b2w.io/produtos/01/00/img/2188245/6/2188245666_1GG.jpg"
+    },
+    {
+        "name":"Chocolate",
+        "price": 8.99,
+        "image": "https://m.media-amazon.com/images/I/517h49oNX9L._AC_UF1000,1000_QL80_.jpg"
+    }
+]
