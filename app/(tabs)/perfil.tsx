@@ -12,17 +12,48 @@ import {
 import { Link, router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Inter_900Black } from "@expo-google-fonts/inter";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const logo = require("../../assets/images/beta.png");
-const pao = require("../../assets/images/pao.jpg");
-const quejo = require("../../assets/images/paoqueijo.jpg");
-const sonho = require("../../assets/images/sonho.jpg");
-const fuba = require("../../assets/images/fuba.png");
-const kit = require("../../assets/images/kitkat.jpg");
-const cafe = require("../../assets/images/cafe.jpg");
+
 const user = require("../../assets/images/user.png");
 
+interface Payment{
+  name:String,
+  price:Number
+}
+
+interface User{
+  name:String;
+  email:String;
+  password:String;
+  adress:String;
+  payment:Payment[]
+};
+
 export default function TabTwoScreen() {
+
+  const [data,setData] = useState<User>()
+
+  const loadProfile = async()=>{
+    let item = await AsyncStorage.getItem("users");
+    let idOp = await AsyncStorage.getItem("userId");
+  
+    if(item ==null || idOp===null){
+      router.push("/")
+      return;
+    }
+  
+    let id = Number(idOp)
+    let user:User[] = item==null?[]:JSON.parse(item);
+    console.log(user[id])
+
+    setData(user[id])
+  }
+
+  useEffect(()=>{
+    setInterval(async()=>{await loadProfile()},1000)
+  },[])
+
   return (
     <>
       <View style={styles.tela}>
@@ -41,35 +72,21 @@ export default function TabTwoScreen() {
             <Image source={user} style={styles.imagao} />
           </View>
           <View style={styles.resto}>
-            <Text style={styles.titulo}>Username</Text>
-            <Text>emaildo@usuario</Text>
+            <Text style={styles.titulo}>{data?.name}</Text>
+            <Text>{data?.email}</Text>
           </View>
           <View style={styles.resto}>
             <Text style={styles.subtitulo}>41 9999-9999</Text>
-            <Text>endereco do usuario</Text>
+            <Text>{data?.adress}</Text>
           </View>
           <View style={styles.restao}>
             <Text style={styles.titulo2}>Histórico</Text>
-
-            <View style={styles.card}>
-              <Text>Pão Francês</Text>
-              <Text>2,00</Text>
-            </View>
-
-            <View style={styles.card}>
-              <Text>Pão Francês</Text>
-              <Text>2,00</Text>
-            </View>
-
-            <View style={styles.card}>
-              <Text>Pão Francês</Text>
-              <Text>2,00</Text>
-            </View>
-
-            <View style={styles.card}>
-              <Text>Pão Francês</Text>
-              <Text>2,00</Text>
-            </View>
+            {data?.payment?.map((item)=>(
+              <View style={styles.card}>
+                <Text>{item.name}</Text>
+                <Text>{item.price.toFixed(2)}</Text>
+              </View>
+            ))}
 
           </View>
         </View>
