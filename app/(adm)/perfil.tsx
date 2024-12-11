@@ -13,10 +13,16 @@ import { Link, router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Inter_900Black } from "@expo-google-fonts/inter";
 
+const logo = require("../../assets/images/beta.png");
+const pao = require("../../assets/images/pao.jpg");
+const quejo = require("../../assets/images/paoqueijo.jpg");
+const sonho = require("../../assets/images/sonho.jpg");
+const fuba = require("../../assets/images/fuba.png");
+const kit = require("../../assets/images/kitkat.jpg");
+const cafe = require("../../assets/images/cafe.jpg");
+const user = require("../../assets/images/user.png");
+
 export default function TabTwoScreen() {
-
-
-
   return (
     <>
       <View style={styles.tela}>
@@ -31,47 +37,39 @@ export default function TabTwoScreen() {
           </TouchableOpacity>
         </View>
         <View style={styles.best}>
-          <Text style={styles.titulo}>Carrinho</Text>
-
+          <View style={styles.borda}>
+            <Image source={user} style={styles.imagao} />
+          </View>
           <View style={styles.resto}>
+            <Text style={styles.titulo}>Username</Text>
+            <Text>emaildo@usuario</Text>
+          </View>
+          <View style={styles.resto}>
+            <Text style={styles.subtitulo}>41 9999-9999</Text>
+            <Text>endereco do usuario</Text>
+          </View>
+          <View style={styles.restao}>
+            <Text style={styles.titulo2}>Histórico</Text>
+
             <View style={styles.card}>
               <Text>Pão Francês</Text>
-              <Text>X2</Text>
-              <View style={styles.hori}>
-                <Text>2,00</Text>
-                <TouchableOpacity style={styles.but}>
-                  <Text style={styles.white}>X</Text>
-                </TouchableOpacity>
-              </View>
+              <Text>2,00</Text>
             </View>
 
             <View style={styles.card}>
               <Text>Pão Francês</Text>
-              <Text>X2</Text>
-              <View style={styles.hori}>
-                <Text>2,00</Text>
-                <TouchableOpacity style={styles.but}>
-                  <Text style={styles.white}>X</Text>
-                </TouchableOpacity>
-              </View>
+              <Text>2,00</Text>
             </View>
 
             <View style={styles.card}>
               <Text>Pão Francês</Text>
-              <Text>X2</Text>
-              <View style={styles.hori}>
-                <Text>2,00</Text>
-                <TouchableOpacity style={styles.but}>
-                  <Text style={styles.white}>X</Text>
-                </TouchableOpacity>
-              </View>
+              <Text>2,00</Text>
             </View>
 
-            <View style={styles.dist}>
-            <Text style={styles.subtitulo}>R$ 6,00</Text>
-            <TouchableOpacity style={styles.button}>
-                  <Text style={styles.white}>Pagar</Text>
-            </TouchableOpacity></View>
+            <View style={styles.card}>
+              <Text>Pão Francês</Text>
+              <Text>2,00</Text>
+            </View>
 
           </View>
         </View>
@@ -81,10 +79,10 @@ export default function TabTwoScreen() {
 }
 
 const styles = StyleSheet.create({
-    dist: {
-        marginTop: 20,
-        gap: 10
-    },
+  dist: {
+    marginTop: 20,
+    gap: 10,
+  },
   hori: {
     flexDirection: "row",
     alignItems: "center",
@@ -115,6 +113,13 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   resto: {
+    marginTop: 5,
+    gap: 2,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  restao: {
     gap: 10,
     padding: 13,
     width: "100%",
@@ -142,28 +147,30 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Inter",
   },
-  subtitulo: {
+  titulo2: {
     fontSize: 20,
     textAlign: "center",
     fontFamily: "Inter",
+  },
+  subtitulo: {
+    fontSize: 20,
+    textAlign: "center",
+    fontWeight: "bold",
   },
   image: {
     width: 200,
     height: 150,
   },
 
-  imagens: {
-    width: 115,
-    height: 90,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.44,
-    shadowRadius: 10.32,
-    elevation: 16,
+  borda: {
+    padding: 10,
+    borderRadius: "100%",
+    backgroundColor: "#dadada",
+  },
 
-    borderRadius: 10,
+  imagao: {
+    width: 120,
+    height: 120,
+    borderRadius: "100%",
   },
 });

@@ -86,7 +86,7 @@ export default function TabTwoScreen() {
             <Text style={styles.white}>◀</Text>
           </TouchableOpacity>
         </View>
-        <ScrollView contentContainerStyle={styles.resto}>
+        <View style={styles.resto}>
           <Text style={styles.titulo}>Produtos</Text>
           <View style={styles.best}>
             {json.map((product:Products)=>{
@@ -97,15 +97,12 @@ export default function TabTwoScreen() {
                       <Text>{product.name}</Text>
                       <Text>{product.price}</Text>
                     </View>
-                    <TouchableOpacity style={styles.but} onPress={()=>{onPress(product.name,product.price)}}>
-                      <Text style={styles.white}>Adicionar</Text>
-                    </TouchableOpacity>
                   </View>
                 )
               })
             }
           </View>
-        </ScrollView>
+        </View>
       </View>
     </>
   );
