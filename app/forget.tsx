@@ -22,7 +22,7 @@ export default function Login() {
 
 
     const onPress = async() => {
-        await AsyncStorage.removeItem("users")
+        // await AsyncStorage.removeItem("users")
         var item = await AsyncStorage.getItem("users");
         var user:User[] = item==null?[]:JSON.parse(item);
         user.map(async (item,index)=>{
