@@ -17,6 +17,8 @@ import { Inter_900Black } from "@expo-google-fonts/inter";
 import json from "@/constants/Products.json";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+const lixo = require("../../assets/images/lixo.png");
+
 interface  Products{
   name:String,
   price:number,
@@ -97,6 +99,9 @@ export default function TabTwoScreen() {
                       <Text>{product.name}</Text>
                       <Text>{product.price}</Text>
                     </View>
+                    <TouchableOpacity style={styles.centrol}>
+                      <Image source={lixo} style={styles.imagen} />
+                    </TouchableOpacity>
                   </View>
                 )
               })
@@ -109,6 +114,9 @@ export default function TabTwoScreen() {
 }
 
 const styles = StyleSheet.create({
+  centrol: {
+    alignItems: "center"
+  },
   hori: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -171,6 +179,11 @@ const styles = StyleSheet.create({
   image: {
     width: 200,
     height: 150,
+  },
+
+  imagen: {
+    width: 25,
+    height: 25,
   },
 
   imagens: {
