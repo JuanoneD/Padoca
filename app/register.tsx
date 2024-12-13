@@ -61,6 +61,13 @@ export default function Login() {
                     value={adress}
                     placeholder="Digite seu endereço"
                     />
+                    <TextInput
+                    style={styles.input}
+                    // onChangeText={}
+                    // value={}
+                    placeholder="Digite seu número"
+                    keyboardType="numeric"
+                    />
                     {error&&<Text style={{marginBottom:10}}>Email ou senha invalido!!</Text>}
                     <TouchableOpacity style={styles.button} onPress={onPress}>
                         <Text style={styles.white}>Cadastrar</Text>
