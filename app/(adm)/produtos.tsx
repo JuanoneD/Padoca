@@ -20,7 +20,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 interface  Products{
   name:String,
   price:number,
-  image:String
+  link:String
 }
 
 
@@ -34,10 +34,12 @@ interface User{
 
 
 export default function TabTwoScreen() {
+  const [data, setData] = React.useState<Products[]>([])
 
   const onPress = async(name:String,price:number) => {
     var item = await AsyncStorage.getItem("users");
     var idOp = await AsyncStorage.getItem("userId");
+
 
     if(item ==null || idOp===null){
       router.push("/")
@@ -72,6 +74,16 @@ export default function TabTwoScreen() {
     }
   }
 
+  const loadProduct = async()=>{
+      var item = await AsyncStorage.getItem("products");
+      var products:Products[] = item==null?[]:JSON.parse(item);
+      setData(products)
+  }
+
+  useEffect(()=>{
+      loadProduct();
+  },[])
+
 
   return (
     <>
@@ -89,10 +101,10 @@ export default function TabTwoScreen() {
         <View style={styles.resto}>
           <Text style={styles.titulo}>Produtos</Text>
           <View style={styles.best}>
-            {json.map((product:Products)=>{
+            {data.map((product:Products)=>{
                 return(
                   <View style={styles.card}>
-                    <Image source={{uri:product.image}} style={styles.imagens} />
+                    <Image source={{uri:product.link}} style={styles.imagens} />
                     <View style={styles.hori}>
                       <Text>{product.name}</Text>
                       <Text>{product.price}</Text>

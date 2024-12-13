@@ -14,27 +14,31 @@ import React, { useEffect, useState } from "react";
 import { Inter_900Black } from "@expo-google-fonts/inter";
 
 import json from "@/constants/Products.json";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Products {
-    name: String,
+    name: string,
+    price:Number,
+    link:string
 }
 
 export default function TabTwoScreen() {
 
-    const [on, setOn] = useState(Boolean)
-    const [qtd, setQtd] = useState(Number)
-
-    const plus = () => {
-        setQtd(qtd + 1)
-    }
-
-    const less = () => {
-        if (qtd > 0) {
-            setQtd(qtd - 1)
-        }
-    }
+    const [price, setPrice] = React.useState(0)
+    const [name, setName] = React.useState("")
+    const [link, setLink] = React.useState("")
 
 
+    const onPress = async() => {
+        var item = await AsyncStorage.getItem("products");
+        var products:Products[] = item==null?[]:JSON.parse(item);
+        console.log(products)
+        products.push({name,price,link})
+        await AsyncStorage.setItem("products",JSON.stringify(products));
+        router.push("/")
+    };
+
+    
 
     return (
         <>
@@ -54,16 +58,22 @@ export default function TabTwoScreen() {
                     <TextInput
                         style={styles.input}
                         placeholder="Nome do produto"
-                    />
+                        value={name}
+                        onChangeText={setName}
+                        />
                     <TextInput
                         style={styles.input}
                         placeholder="Valor do produto"
+                        value={price}
+                        onChangeText={setPrice}
                     />
                     <TextInput
                         style={styles.input}
                         placeholder="Link da imagem do produto"
+                        value={link}
+                        onChangeText={setLink}
                     />
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={async()=>{await onPress()}}>
                         <Text style={styles.white}>Adicionar</Text>
                     </TouchableOpacity>
                 </View>

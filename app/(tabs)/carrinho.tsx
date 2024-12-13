@@ -111,11 +111,11 @@ export default function TabTwoScreen() {
           <Text style={styles.titulo}>Carrinho</Text>
           <View style={styles.resto}>
             {data?.map((item,index)=>(
-              <View style={styles.card}>
+              <View style={styles.card} key={index}>
                 <Text>{item?.name}</Text>
                 <Text>X{item?.qtd}</Text>
                 <View style={styles.hori}>
-                  <Text>{item?.price.toFixed(2)}</Text>
+                  <Text>{item?.price}</Text>
                   <TouchableOpacity style={styles.but} onPress={()=>{deleteItem(index)}}>
                     <Text style={styles.white}>X</Text>
                   </TouchableOpacity>
@@ -123,7 +123,7 @@ export default function TabTwoScreen() {
               </View>
             ))}
             <View style={styles.dist}>
-            <Text style={styles.subtitulo}>R$ {total.toFixed(2)}</Text>
+            <Text style={styles.subtitulo}>R$ {total}</Text>
             <TouchableOpacity style={styles.button} onPress={()=>{payment()}}>
                   <Text style={styles.white}>Pagar</Text>
             </TouchableOpacity></View>
