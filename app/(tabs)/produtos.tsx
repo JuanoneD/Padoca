@@ -75,7 +75,7 @@ export default function TabTwoScreen() {
 
   return (
     <>
-      <View style={styles.tela}>
+      <ScrollView contentContainerStyle={styles.tela}>
         <View style={styles.butao}>
           <TouchableOpacity
             onPress={() => {
@@ -86,7 +86,7 @@ export default function TabTwoScreen() {
             <Text style={styles.white}>◀</Text>
           </TouchableOpacity>
         </View>
-        <ScrollView contentContainerStyle={styles.resto}>
+        <View style={styles.resto}>
           <Text style={styles.titulo}>Produtos</Text>
           <View style={styles.best}>
             {json.map((product:Products)=>{
@@ -105,8 +105,8 @@ export default function TabTwoScreen() {
               })
             }
           </View>
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     </>
   );
 }

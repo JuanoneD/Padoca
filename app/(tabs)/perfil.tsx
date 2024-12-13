@@ -6,6 +6,7 @@ import {
   FlatList,
   TextInput,
   Button,
+  ScrollView,
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
@@ -56,7 +57,7 @@ export default function TabTwoScreen() {
 
   return (
     <>
-      <View style={styles.tela}>
+      <ScrollView contentContainerStyle={styles.tela}>
         <View style={styles.butao}>
           <TouchableOpacity
             onPress={() => {
@@ -90,7 +91,7 @@ export default function TabTwoScreen() {
 
           </View>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }

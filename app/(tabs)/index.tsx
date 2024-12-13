@@ -5,6 +5,7 @@ import {
   Image,
   FlatList,
   TextInput,
+  ScrollView,
   Button,
   ActivityIndicator,
   TouchableOpacity,
@@ -23,7 +24,7 @@ const cafe = require("../../assets/images/cafe.png");
 export default function TabTwoScreen() {
   return (
     <>
-      <View style={styles.tela}>
+      <ScrollView contentContainerStyle={styles.tela}>
         <View style={styles.butao}>
           <TouchableOpacity
             onPress={() => {
@@ -57,7 +58,7 @@ export default function TabTwoScreen() {
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }
