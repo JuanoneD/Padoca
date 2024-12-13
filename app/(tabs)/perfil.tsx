@@ -46,7 +46,6 @@ export default function TabTwoScreen() {
   
     let id = Number(idOp)
     let user:User[] = item==null?[]:JSON.parse(item);
-    console.log(user[id])
 
     setData(user[id])
   }
