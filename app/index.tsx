@@ -22,6 +22,9 @@ export default function Login() {
 
 
     const onPress = async() => {
+        if(email==="admin"&&password==="admin"){
+            router.push("/(adm)")
+        }
         var item = await AsyncStorage.getItem("users");
         var user:User[] = item==null?[]:JSON.parse(item);
         user.map(async (item,index)=>{
