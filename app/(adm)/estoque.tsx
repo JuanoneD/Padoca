@@ -14,26 +14,48 @@ import React, { useEffect, useState } from "react";
 import { Inter_900Black } from "@expo-google-fonts/inter";
 
 import json from "@/constants/Products.json";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Products {
-    name: String,
+    name: string,
+    price:Number,
+    link:string,
+    qtd:number
 }
 
 export default function TabTwoScreen() {
 
+    const [data, setData] = React.useState<Products[]>([])
+
     const [on, setOn] = useState(Boolean)
     const [qtd, setQtd] = useState(Number)
 
-    const plus = () => {
-        setQtd(qtd+1)
+    const plus = async (index:number) => {
+        let products:Products[] = data;
+        products[index].qtd+=1;
+
+        await AsyncStorage.setItem("products",JSON.stringify(products));
+        loadProduct()
     }
 
-    const less = () => {
-        if (qtd>0) {
-            setQtd(qtd-1)
-        }
+    const less = async (index:number) => {
+        let products:Products[] = data;
+        products[index].qtd-=1;
+
+        await AsyncStorage.setItem("products",JSON.stringify(products));
+        loadProduct()
     }
 
+
+    const loadProduct = async()=>{
+        var item = await AsyncStorage.getItem("products");
+        var products:Products[] = item==null?[]:JSON.parse(item);
+        setData(products)
+    }
+
+    useEffect(()=>{
+        loadProduct()
+    },[])
 
 
     return (
@@ -54,21 +76,21 @@ export default function TabTwoScreen() {
 
                     <View style={styles.best}>
 
-                        {json.map((product: Products) => {
+                        {data.map((product: Products,index) => {
                             return (
                                 <View style={styles.card}>
                                     <View style={styles.textContainer}>
                                         <View style={styles.hori}>
-                                            <Text style={ qtd>0 ? styles.ok : styles.ops}></Text>
+                                            <Text style={ product.qtd>0 ? styles.ok : styles.ops}></Text>
                                             <Text style={styles.productName}>{product.name}</Text>
                                         </View>
-                                        <Text style={styles.quantity}>X{qtd}</Text>
+                                        <Text style={styles.quantity}>X{product.qtd?product.qtd:"0"}</Text>
                                     </View>
                                     <View style={styles.hori}>
-                                        <TouchableOpacity onPress={()=>{plus()}} style={styles.but}>
+                                        <TouchableOpacity onPress={()=>{plus(index)}} style={styles.but}>
                                             <Text style={styles.white}>➕</Text>
                                         </TouchableOpacity>
-                                        <TouchableOpacity onPress={()=>{less()}} style={styles.but}>
+                                        <TouchableOpacity onPress={()=>{less(index)}} style={styles.but}>
                                             <Text style={styles.white}>➖</Text>
                                         </TouchableOpacity>
                                     </View>

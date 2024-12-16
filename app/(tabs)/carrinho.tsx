@@ -73,6 +73,7 @@ export default function TabTwoScreen() {
     let items = "" 
     user[id].products.forEach((item,index)=>{
       items+=index<1?item.name:", "+item.name;
+      
     })
 
     try {

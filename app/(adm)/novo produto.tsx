@@ -13,13 +13,13 @@ import { Link, router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Inter_900Black } from "@expo-google-fonts/inter";
 
-import json from "@/constants/Products.json";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Products {
     name: string,
     price:Number,
-    link:string
+    link:string,
+    qtd:number
 }
 
 export default function TabTwoScreen() {
@@ -33,10 +33,11 @@ export default function TabTwoScreen() {
         var item = await AsyncStorage.getItem("products");
         var products:Products[] = item==null?[]:JSON.parse(item);
         console.log(products)
-        products.push({name,price,link})
+        products.push({name,price,link,qtd:0})
         await AsyncStorage.setItem("products",JSON.stringify(products));
         router.push("/")
     };
+
 
     
 
