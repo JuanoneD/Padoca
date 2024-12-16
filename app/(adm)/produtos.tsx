@@ -38,42 +38,13 @@ interface User{
 export default function TabTwoScreen() {
   const [data, setData] = React.useState<Products[]>([])
 
-  const onPress = async(name:String,price:number) => {
-    var item = await AsyncStorage.getItem("users");
-    var idOp = await AsyncStorage.getItem("userId");
-
-
-    if(item ==null || idOp===null){
-      router.push("/")
-      return;
-    }
-
-
-    var id = Number(idOp)
-    var user:User[] = item==null?[]:JSON.parse(item);
-    try {
-      console.log(user[id].products)
-
-      var find = false;
-
-      user[id].products.map((prod,index)=>{
-        if(prod.name===name){
-          find = true
-          user[id].products[index].qtd +=1;
-          user[id].products[index].price+=price;
-        }
-      })
-      if(!find){
-        user[id].products.push({name,price,qtd:1})
-      }
-      
-    } catch (error) {
-      console.log(error)
-      user[id].products = [{name,price,qtd:1}]
-    }finally{
-      // user[id].products = [{name,price,qtd:1}]
-      AsyncStorage.setItem("users",JSON.stringify(user))
-    }
+  const onPress = async(index:number) => {
+    var item = await AsyncStorage.getItem("products");
+    var products:Products[] = item==null?[]:JSON.parse(item);
+    products = products.filter((prod,ind)=>ind!==index)
+    
+    await AsyncStorage.setItem("products",JSON.stringify(products))
+    await loadProduct()
   }
 
   const loadProduct = async()=>{
@@ -103,7 +74,7 @@ export default function TabTwoScreen() {
         <View style={styles.resto}>
           <Text style={styles.titulo}>Produtos</Text>
           <View style={styles.best}>
-            {data.map((product:Products)=>{
+            {data.map((product:Products,index)=>{
                 return(
                   <View style={styles.card}>
                     <Image source={{uri:product.link}} style={styles.imagens} />
@@ -111,7 +82,7 @@ export default function TabTwoScreen() {
                       <Text>{product.name}</Text>
                       <Text>{product.price}</Text>
                     </View>
-                    <TouchableOpacity style={styles.centrol}>
+                    <TouchableOpacity style={styles.centrol} onPress={()=>{onPress(index)}}>
                       <Image source={lixo} style={styles.imagen} />
                     </TouchableOpacity>
                   </View>
