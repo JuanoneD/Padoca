@@ -35,7 +35,7 @@ export default function TabTwoScreen() {
   
     let total = 0
     user[id].products?.forEach((item)=>{
-      total+=item?.price
+      total+=Number(item?.price)
     })
     setTotal(total)
   }

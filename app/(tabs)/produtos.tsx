@@ -18,8 +18,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface  Products{
   name:String,
-  price:Number,
-  link:String
+  price:number,
+  link:String,
+  qtd:number
 }
 
 
@@ -38,9 +39,14 @@ export default function TabTwoScreen() {
 
   const [data,setData]= React.useState<Products[]>([])
 
-  const onPress = async(name:String,price:number) => {
+  const onPress = async(name:String,price:number,index:number) => {
     var item = await AsyncStorage.getItem("users");
     var idOp = await AsyncStorage.getItem("userId");
+
+    var productItem = await AsyncStorage.getItem("products");
+    var products:Products[] = productItem==null?[]:JSON.parse(productItem);
+
+    products[index].qtd-=1
 
     if(item ==null || idOp===null){
       router.push("/")
@@ -72,6 +78,8 @@ export default function TabTwoScreen() {
     }finally{
       // user[id].products = [{name,price,qtd:1}]
       AsyncStorage.setItem("users",JSON.stringify(user))
+      AsyncStorage.setItem("products",JSON.stringify(products))
+      loadProduct()
     }
   }
 
@@ -101,7 +109,10 @@ export default function TabTwoScreen() {
         <View style={styles.resto}>
           <Text style={styles.titulo}>Produtos</Text>
           <View style={styles.best}>
-            {data?.map((product:Products)=>{
+            {data?.map((product:Products,index)=>{
+              if(product.qtd<=0){
+                return(<></>)
+              }
                 return(
                   <View style={styles.card}>
                     <Image source={{uri:product.link}} style={styles.imagens} />
@@ -109,7 +120,7 @@ export default function TabTwoScreen() {
                       <Text>{product.name}</Text>
                       <Text>{product.price}</Text>
                     </View>
-                    <TouchableOpacity style={styles.but} onPress={()=>{onPress(product.name,product.price)}}>
+                    <TouchableOpacity style={styles.but} onPress={()=>{onPress(product.name,product.price,index)}}>
                       <Text style={styles.white}>Adicionar</Text>
                     </TouchableOpacity>
                   </View>
