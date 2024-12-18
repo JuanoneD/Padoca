@@ -18,9 +18,6 @@ export default function Login() {
     const [password, setPassword] = React.useState('');
     const [error,setError] = React.useState(false);
 
-
-
-
     const onPress = async() => {
         if(email==="admin"&&password==="admin"){
             router.push("/(adm)")
@@ -57,16 +54,17 @@ export default function Login() {
                         secureTextEntry={true}
                     />
                     {error&&
-                        <View>
-                            <Text style={{marginBottom:10}}>Email ou senha invalido!!</Text>
-                            <Link href={"/forget"}>Esqueci a senha</Link>
+                        <View style={styles.centrol}>
+                            <Text style={{marginBottom:10, color: "#950F0FFF", fontWeight: "400"}}>Email ou senha invalido!!</Text>
+                            <Link style={{marginBottom:10, color: "#1C239EFF", fontWeight: "700"}} href={"/forget"}>Esqueci a senha</Link>
                         </View>
                     }
                     <TouchableOpacity style={styles.button} onPress={onPress}>
                         <Text style={styles.white}>Login</Text>
                     </TouchableOpacity>
-                    <View>
-                        <Link href={"/register"}>Cadastrar Usuario</Link>
+                    <View style={{marginTop:10, flexDirection: "row", alignItems: "center", gap: 5}}>
+                        <Text>Nao tem conta?</Text>
+                        <Link style={{fontWeight: "700", color: "#1C239EFF"}} href={"/register"}>Cadastrar</Link>
                     </View>
                 </View>
             </SafeAreaView>
@@ -87,6 +85,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         width:"80%"
+    },
+    centrol: {
+        width: '100%',
+        justifyContent: "center",
+        alignItems: 'center',
     },
     button: {
 

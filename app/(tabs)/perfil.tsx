@@ -73,18 +73,18 @@ export default function TabTwoScreen() {
           </View>
           <View style={styles.resto}>
             <Text style={styles.titulo}>{data?.name}</Text>
-            <Text>{data?.email}</Text>
+            <Text style={{color: "#502410", fontWeight: "600", fontSize: 15}}>{data?.email}</Text>
           </View>
           <View style={styles.resto}>
             <Text style={styles.subtitulo}>41 9999-9999</Text>
-            <Text>{data?.adress}</Text>
+            <Text style={{color: "#502410", fontWeight: "600", fontSize: 15}}>{data?.adress}</Text>
           </View>
           <View style={styles.restao}>
             <Text style={styles.titulo2}>Histórico</Text>
             {data?.payment?.map((item)=>(
               <View style={styles.card}>
-                <Text>{item.name}</Text>
-                <Text>{item.price.toFixed(2)}</Text>
+                <Text style={{color: "#502410", fontWeight: "600", fontSize: 15}}>{item.name}</Text>
+                <Text style={{color: "#502410", fontWeight: "700", fontSize: 15}}>{item.price.toFixed(2)}</Text>
               </View>
             ))}
 
@@ -109,12 +109,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: "100%",
-    backgroundColor: "black",
+    backgroundColor: "#502410",
     width: 25,
     height: 25,
   },
   card: {
-    backgroundColor: "#DADADAFF",
+    backgroundColor: "#f3de9f",
     padding: 10,
     borderRadius: 10,
     width: "100%",
@@ -128,6 +128,8 @@ const styles = StyleSheet.create({
   },
   tela: {
     padding: 5,
+    flex: 1,
+    backgroundColor: "#e6bd6e",
   },
   resto: {
     marginTop: 5,
@@ -152,27 +154,30 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "#502410",
     padding: 10,
     borderRadius: 10,
   },
   white: {
-    color: "white",
+    color: "#ffffd0",
   },
   titulo: {
     fontSize: 25,
     textAlign: "center",
     fontFamily: "Inter",
+    color: "#502410",
   },
   titulo2: {
     fontSize: 20,
     textAlign: "center",
-    fontFamily: "Inter",
+    fontWeight: "600",
+    color: "#502410",
   },
   subtitulo: {
     fontSize: 20,
     textAlign: "center",
     fontWeight: "bold",
+    color: "#502410",
   },
   image: {
     width: 200,
@@ -182,7 +187,7 @@ const styles = StyleSheet.create({
   borda: {
     padding: 10,
     borderRadius: "100%",
-    backgroundColor: "#dadada",
+    backgroundColor: "#f9efb8",
   },
 
   imagao: {

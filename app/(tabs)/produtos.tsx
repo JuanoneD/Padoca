@@ -143,12 +143,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    backgroundColor: "black",
+    backgroundColor: "#502410",
     padding: 5,
     marginTop: 5,
   },
   card: {
-    backgroundColor: "#DADADAFF",
+    backgroundColor: "#f3de9f",
     padding: 7,
     borderRadius: 10,
   },
@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
   tela: {
     flex: 1,
     padding: 5,
+    backgroundColor: "#e6bd6e",
   },
   resto: {
     gap: 15,
@@ -177,17 +178,18 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "#502410",
     padding: 10,
     borderRadius: 10,
   },
   white: {
-    color: "white",
+    color: "#ffffd0",
   },
   titulo: {
     fontSize: 25,
     textAlign: "center",
     fontFamily: "Inter",
+    color: "#502410",
   },
   subtitulo: {
     fontSize: 20,

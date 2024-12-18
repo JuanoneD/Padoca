@@ -120,10 +120,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: "100%",
-        backgroundColor: "#C0C0C0FF",
+        backgroundColor: "#ffffd0",
         width: 25,
         height: 25,
-        borderColor: "#959595FF",
+        borderColor: "#ecce87",
         borderWidth: 2,
     },
     ok: {
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
     },
     card: {
-        backgroundColor: "#DADADAFF",
+        backgroundColor: "#f3de9f",
         padding: 10,
         borderRadius: 10,
         width: "100%",
@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
     quantity: {
         fontSize: 14,
         fontWeight: "bold",
+        color: "#502410",
     },
     butao: {
         justifyContent: "flex-start",
@@ -174,6 +175,8 @@ const styles = StyleSheet.create({
     },
     tela: {
         padding: 5,
+        flex: 1,
+        backgroundColor: "#e6bd6e",
     },
     resto: {
         gap: 10,
@@ -191,17 +194,18 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: "center",
-        backgroundColor: "black",
+        backgroundColor: "#502410",
         padding: 10,
         borderRadius: 10,
     },
     white: {
-        color: "white",
+        color: "#ffffd0",
     },
     titulo: {
         fontSize: 25,
         textAlign: "center",
         fontFamily: "Inter",
+        color: "#502410",
     },
     subtitulo: {
         fontSize: 20,

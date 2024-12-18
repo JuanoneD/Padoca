@@ -151,6 +151,8 @@ const styles = StyleSheet.create({
     },
     tela: {
         padding: 5,
+        backgroundColor: "#e6bd6e",
+        flex: 1,
     },
     resto: {
         gap: 10,
@@ -168,17 +170,18 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: "center",
-        backgroundColor: "black",
+        backgroundColor: "#502410",
         padding: 10,
         borderRadius: 10,
     },
     white: {
-        color: "white",
+        color: "#ffffd0",
     },
     titulo: {
         fontSize: 25,
         textAlign: "center",
         fontFamily: "Inter",
+        color: "#502410",
     },
     subtitulo: {
         fontSize: 20,
@@ -209,6 +212,7 @@ const styles = StyleSheet.create({
         margin: 12,
         borderWidth: 1,
         padding: 10,
-        width: "80%"
+        width: "80%",
+        backgroundColor: "#f9efb8",
     },
 });
